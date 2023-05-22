@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Unit Converter</title>
+  <style>
+
+.container {
+  margin-left: 300px;
+  width: 600px;
+  border: 1px solid #000;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  background-color: #f1f1f1;
+  padding: 10px;
+}
+
+.navbar a {
+  text-decoration: none;
+  padding: 5px 10px;
+  margin: 0 10px;
+  color: #000;
+  font-family: Arial, sans-serif;
+  transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+  color: #ff0000;
+}
+
+.converter {
+  display: none;
+}
+
+.converter.active {
+  display: block;
+}
+
+button {
+  display: block;
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.result {
+  margin-top: 10px;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+  </style>
+</head>
+<body>
+  <h1>UNIT CONVERTER</h1>
+  <div class="container">
+  <div class="navbar">
+    <a href="#" onclick="showConverter('length')">Length</a>
+    <a href="#" onclick="showConverter('temperature')">Temperature</a>
+    <a href="#" onclick="showConverter('weight')">Weight</a>
+    <a href="#" onclick="showConverter('time')">Time</a>
+    <a href="#" onclick="showConverter('volume')">Volume</a>
+    <a href="#" onclick="showConverter('area')">Area</a>
+  </div>
+
+  <div class="converter active" id="lengthConverter">
+    <h2>Length Converter</h2>
+    <label>
+      From:
+      <select id="lengthFrom">
+        <option value="meter">Meter</option>
+        <option value="kilometer">Kilometer</option>
+        <option value="centimeter">Centimeter</option>
+        <option value="millimeter">Millimeter</option>
+        <option value="micrometer">Micrometer</option>
+        <option value="nanometer">Nanometer</option>
+        <option value="foot">Foot</option>
+        <option value="inch">Inch</option>
+        <option value="mile">Mile</option>
+      </select>
+    </label>
+    <label>
+      To:
+      <select id="lengthTo">
+        <option value="meter">Meter</option>
+        <option value="kilometer">Kilometer</option>
+        <option value="centimeter">Centimeter</option>
+        <option value="millimeter">Millimeter</option>
+        <option value="micrometer">Micrometer</option>
+        <option value="nanometer">Nanometer</option>
+        <option value="foot">Foot</option>
+        <option value="inch">Inch</option>
+        <option value="mile">Mile</option>
+      </select>
+    </label>
+    <label>
+      Value:
+      <input type="text" id="inputLength" />
+    </label>
+    <button onclick="convert('length')">Convert</button>
+    <div class="result">
+      <p id="resultOutputLength"></p>
+    </div>
+  </div>
+
+  <div class="converter" id="temperatureConverter">
+    <h2>Temperature Converter</h2>
+    <label>
+      From:
+      <select id="temperatureFrom">
+        <option value="celsius">Celsius</option>
+        <option value="kelvin">Kelvin</option>
+        <option value="fahrenheit">Fahrenheit</option>
+      </select>
+    </label>
+    <label>
+      To:
+      <select id="temperatureTo">
+        <option value="celsius">Celsius</option>
+        <option value="kelvin">Kelvin</option>
+        <option value="fahrenheit">Fahrenheit</option>
+      </select>
+    </label>
+    <label>
+      Value:
+      <input type="text" id="inputTemperature" />
+    </label>
+    <button onclick="convert('temperature')">Convert</button>
+    <div class="result">
+      <p id="resultOutputTemperature"></p>
+    </div>
+  </div>
+
+  <div class="converter" id="weightConverter">
+    <h2>Weight Converter</h2>
+    <label>
+      From:
+      <select id="weightFrom">
+        <option value="kilogram">Kilogram</option>
+        <option value="gram">Gram</option>
+        <option value="milligram">Milligram</option>
+        <option value="milligram">Microgram</option>
+        <option value="metricTon">Metric Ton</option>
+        <option value="pound">Pound</option>
+        <option value="atomicMassUnit">Atomic Mass Unit</option>
+      </select>
+    </label>
+    <label>
+      To:
+      <select id="weightTo">
+        <option value="kilogram">Kilogram</option>
+        <option value="gram">Gram</option>
+        <option value="milligram">Milligram</option>
+        <option value="milligram">Microgram</option>
+        <option value="metricTon">Metric Ton</option>
+        <option value="pound">Pound</option>
+        <option value="atomicMassUnit">Atomic Mass Unit</option>
+      </select>
+    </label>
+    <label>
+      Value:
+      <input type="text" id="inputWeight" />
+    </label>
+    <button onclick="convert('weight')">Convert</button>
+    <div class="result">
+      <p id="resultOutputWeight"></p>
+    </div>
+  </div>
+
+  <div class="converter" id="timeConverter">
+    <h2>Time Converter</h2>
+    <label>
+      From:
+      <select id="timeFrom">
+        <option value="hour">Hour</option>
+        <option value="minute">Minute</option>
+        <option value="second">Second</option>
+        <option value="day">Day</option>
+        <option value="week">Week</option>
+        <option value="month">Month</option>
+        <option value="year">Year</option>
+        <option value="millisecond">Millisecond</option>
+        <option value="microsecond">Microsecond</option>
+        <option value="nanosecond">Nanosecond</option>
+      </select>
+    </label>
+    <label>
+      To:
+      <select id="timeTo">
+        <option value="hour">Hour</option>
+        <option value="minute">Minute</option>
+        <option value="second">Second</option>
+        <option value="day">Day</option>
+        <option value="week">Week</option>
+        <option value="month">Month</option>
+        <option value="year">Year</option>
+        <option value="millisecond">Millisecond</option>
+        <option value="microsecond">Microsecond</option>
+        <option value="nanosecond">Nanosecond</option>
+      </select>
+    </label>
+    <label>
+      Value:
+      <input type="text" id="inputTime" />
+    </label>
+    <button onclick="convert('time')">Convert</button>
+    <div class="result">
+      <p id="resultOutputTime"></p>
+    </div>
+  </div>
+
+  <div class="converter" id="volumeConverter">
+    <h2>Volume Converter</h2>
+    <label>
+      From:
+      <select id="volumeFrom">
+        <option value="liter">Liter</option>
+        <option value="milliliter">Milliliter</option>
+        <option value="gallon">Gallon</option>
+      </select>
+    </label>
+    <label>
+      To:
+      <select id="volumeTo">
+        <option value="liter">Liter</option>
+        <option value="milliliter">Milliliter</option>
+        <option value="gallon">Gallon</option>
+      </select>
+    </label>
+    <label>
+      Value:
+      <input type="text" id="inputVolume" />
+    </label>
+    <button onclick="convert('volume')">Convert</button>
+    <div class="result">
+      <p id="resultOutputVolume"></p>
+    </div>
+  </div>
+
+  <div class="converter" id="areaConverter">
+    <h2>Area Converter</h2>
+    <label>
+      From:
+      <select id="areaFrom">
+        <option value="squareMeter">Square Meter</option>
+        <option value="hectare">Hectare</option>
+        <option value="yard">Yard</option>
+        <option value="mile">Mile</option>
+        <option value="acre">Acre</option>
+        <option value="squareKilometer">Square Kilometer</option>
+        <option value="squareCentimeter">Square Centimeter</option>
+      </select>
+    </label>
+    <label>
+      To:
+      <select id="areaTo">
+        <option value="squareMeter">Square Meter</option>
+        <option value="hectare">Hectare</option>
+        <option value="yard">Yard</option>
+        <option value="mile">Mile</option>
+        <option value="acre">Acre</option>
+        <option value="squareKilometer">Square Kilometer</option>
+        <option value="squareCentimeter">Square Centimeter</option>
+      </select>
+    </label>
+    <label>
+      Value:
+      <input type="text" id="inputArea" />
+    </label>
+    <button onclick="convert('area')">Convert</button>
+    <div class="result">
+      <p id="resultOutputArea"></p>
+    </div>
+  </div>
+</div>
+  <script>
+    function showConverter(converter) {
+      var converters = document.getElementsByClassName("converter");
+      for (var i = 0; i < converters.length; i++) {
+        converters[i].classList.remove("active");
+      }
+      document.getElementById(converter + "Converter").classList.add("active");
+
+      var navLinks = document.getElementsByTagName("a");
+      for (var i = 0; i < navLinks.length; i++) {
+        navLinks[i].classList.remove("active");
+      }
+      document.querySelector(".navbar a[href='#'][onclick=\"showConverter('" + converter + "')\"]").classList.add("active");
+    }
+
+    function convert(converter) {
+      var resultOutput = document.getElementById("resultOutput" + converter.charAt(0).toUpperCase() + converter.slice(1));
+      resultOutput.innerHTML = "";
+
+      if (converter === "length") {
+        var lengthFrom = document.getElementById("lengthFrom").value;
+        var lengthTo = document.getElementById("lengthTo").value;
+        var lengthInput = parseFloat(document.getElementById("inputLength").value);
+
+        var lengthConversions = {
+          meter: 1,
+          kilometer: 1000,
+          centimeter: 0.01,
+          millimeter: 0.001,
+          micrometer: 0.000001,
+          nanometer: 0.000000001,
+          foot: 1/3.281,
+          inch: 1/39.37,
+          mile: 1609
+        };
+
+        var lengthResult = lengthInput * (lengthConversions[lengthFrom] / lengthConversions[lengthTo]);
+        resultOutput.innerHTML = "Result: " + lengthResult.toFixed(5) + " " + lengthTo;
+      }
+
+      if (converter === "temperature") {
+        var temperatureFrom = document.getElementById("temperatureFrom").value;
+        var temperatureTo = document.getElementById("temperatureTo").value;
+        var temperatureInput = parseFloat(document.getElementById("inputTemperature").value);
+
+        var temperatureResult;
+
+        if (temperatureFrom === "celsius") {
+          if (temperatureTo === "kelvin") {
+            temperatureResult = temperatureInput + 273.15;
+          } else if (temperatureTo === "fahrenheit") {
+            temperatureResult = (temperatureInput * 9/5) + 32;
+          } else {
+            temperatureResult = temperatureInput;
+          }
+        } else if (temperatureFrom === "kelvin") {
+          if (temperatureTo === "celsius") {
+            temperatureResult = temperatureInput - 273.15;
+          } else if (temperatureTo === "fahrenheit") {
+            temperatureResult = (temperatureInput - 273.15) * 9/5 + 32;
+          } else {
+            temperatureResult = temperatureInput;
+          }
+        } else if (temperatureFrom === "fahrenheit") {
+          if (temperatureTo === "celsius") {
+            temperatureResult = (temperatureInput - 32) * 5/9;
+          } else if (temperatureTo === "kelvin") {
+            temperatureResult = (temperatureInput - 32) * 5/9 + 273.15;
+          } else {
+            temperatureResult = temperatureInput;
+          }
+        } else {
+          temperatureResult = temperatureInput;
+        }
+
+        resultOutput.innerHTML = "Result: " + temperatureResult.toFixed(5) + " " + temperatureTo;
+      }
+
+      if (converter === "weight") {
+        var weightFrom = document.getElementById("weightFrom").value;
+        var weightTo = document.getElementById("weightTo").value;
+        var weightInput = parseFloat(document.getElementById("inputWeight").value);
+
+        var weightConversions = {
+          kilogram: 1,
+          gram: 1/1000,
+          milligram: 1/1000000,
+          microgram: 1/1000000000,
+          metricTon: 1000,
+          pound: 1/2.205,
+          atomicMassUnit: 1/6.0221415e+26
+        };
+
+        var weightResult = weightInput * (weightConversions[weightFrom] / weightConversions[weightTo]);
+        resultOutput.innerHTML = "Result: " + weightResult.toFixed(5) + " " + weightTo;
+      }
+
+      if (converter === "time") {
+        var timeFrom = document.getElementById("timeFrom").value;
+        var timeTo = document.getElementById("timeTo").value;
+        var timeInput = parseFloat(document.getElementById("inputTime").value);
+
+        var timeConversions = {
+          hour: 1,
+          minute: 1/60,
+          second: 1/3600,
+          day: 24,
+          week: 168,
+          month: 730.484,
+          year: 8765.81,
+          millisecond: 1/3600000,
+          microsecond: 1/3600000000,
+          nanosecond: 1/3600000000000
+        };
+
+        var timeResult = timeInput * (timeConversions[timeFrom] / timeConversions[timeTo]);
+        resultOutput.innerHTML = "Result: " + timeResult.toFixed(5) + " " + timeTo;
+      }
+
+      if (converter === "volume") {
+        var volumeFrom = document.getElementById("volumeFrom").value;
+        var volumeTo = document.getElementById("volumeTo").value;
+        var volumeInput = parseFloat(document.getElementById("inputVolume").value);
+
+        var volumeConversions = {
+          liter: 1,
+          milliliter: 1/1000,
+          gallon: 3.785
+        };
+
+        var volumeResult = volumeInput * (volumeConversions[volumeFrom] / volumeConversions[volumeTo]);
+        resultOutput.innerHTML = "Result: " + volumeResult.toFixed(5) + " " + volumeTo;
+      }
+
+      if (converter === "area") {
+        var areaFrom = document.getElementById("areaFrom").value;
+        var areaTo = document.getElementById("areaTo").value;
+        var areaInput = parseFloat(document.getElementById("inputArea").value);
+
+        var areaConversions = {
+          squareMeter: 1,
+          hectare: 10000,
+          yard: 1/1.19599,
+          mile: 1 / 2.58999e+6,
+          acre: 4047,
+          squareKilometer: 1000000,
+          squareCentimeter: 1/10000
+        };
+
+        var areaResult = areaInput * (areaConversions[areaFrom] / areaConversions[areaTo]);
+        resultOutput.innerHTML = "Result: " + areaResult.toFixed(5) + " " + areaTo;
+      }
+    }
+  </script>
+</body>
+</html>
